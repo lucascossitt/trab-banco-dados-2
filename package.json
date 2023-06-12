@@ -1,0 +1,25 @@
+{
+  "name": "trab-banco-dados-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucascossitt/trab-banco-dados-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucascossitt/trab-banco-dados-2/issues"
+  },
+  "homepage": "https://github.com/lucascossitt/trab-banco-dados-2#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.4"
+  }
+}
