@@ -17,10 +17,10 @@ module.exports = class AlunoController {
         }
     }
 
-    static listarTodos(req, res) {
+    static editar(req, res) {
         try {
             AlunoService
-                .listarTodos()
+                .editar(req.body)
                 .then(result => res.status(200).send(result))
                 .catch(err => {
                     console.error(err)
@@ -32,10 +32,55 @@ module.exports = class AlunoController {
         }
     }
 
-    static listarPorNome(req, res) {
+    static deletar(req, res) {
         try {
             AlunoService
-                .listarPorNome(req.params.nome)
+                .deletar(req.body.id)
+                .then(result => res.status(200).send(result))
+                .catch(err => {
+                    console.error(err)
+                    res.status(500).send()
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send()
+        }
+    }
+
+    static listar(req, res) {
+        try {
+            AlunoService
+                .listar()
+                .then(result => res.status(200).send(result))
+                .catch(err => {
+                    console.error(err)
+                    res.status(500).send()
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send()
+        }
+    }
+
+    static buscarPorNome(req, res) {
+        try {
+            AlunoService
+                .buscarPorNome(req.params.nome)
+                .then(result => res.status(200).send(result))
+                .catch(err => {
+                    console.error(err)
+                    res.status(500).send()
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send()
+        }
+    }
+
+    static buscarPorCurso(req, res) {
+        try {
+            AlunoService
+                .buscarPorCurso(req.params.curso)
                 .then(result => res.status(200).send(result))
                 .catch(err => {
                     console.error(err)
