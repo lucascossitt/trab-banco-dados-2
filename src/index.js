@@ -14,7 +14,7 @@ async function start() {
     })
 
     try {
-        await mongoose.connect('mongodb://172.17.0.3:27017/alunos')
+        await mongoose.connect('mongodb://0.0.0.0:27017/alunos')
         console.log('Conectado ao banco de dados')
     } catch (err) {
         console.error('Falha ao conectar ao banco de dados', err)
