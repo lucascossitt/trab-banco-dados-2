@@ -91,4 +91,34 @@ module.exports = class AlunoController {
             res.status(500).send()
         }
     }
+
+    static buscarPorCidade(req, res) {
+        try {
+            AlunoService
+                .buscarPorCidade(req.params.cidade)
+                .then(result => res.status(200).send(result))
+                .catch(err => {
+                    console.error(err)
+                    res.status(500).send()
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send()
+        }
+    }
+
+    static buscarPorEmail(req, res) {
+        try {
+            AlunoService
+                .buscarPorEmail(req.params.email)
+                .then(result => res.status(200).send(result))
+                .catch(err => {
+                    console.error(err)
+                    res.status(500).send()
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send()
+        }
+    }
 }

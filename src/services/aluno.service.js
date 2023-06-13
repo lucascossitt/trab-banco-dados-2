@@ -1,22 +1,11 @@
-const AlunoSchema = require('../schemas/aluno.schema')
+const AlunoModel = require('../schemas/aluno.schema')
 
 module.exports = class AlunoService {
     static criar(aluno) {
         return new Promise(async function (resolve, reject) {
             try {
-                const novoAluno = new AlunoSchema({
-                    nome: aluno.nome,
-                    dataNascimento: aluno.dataNascimento,
-                    ra: aluno.ra,
-                    email: aluno.email,
-                    endereco: aluno.endereco,
-                    curso: aluno.curso
-                })
-
-                await novoAluno
-                    .save()
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = AlunoModel.create(aluno)
+                resolve(result)
             } catch (err) {
                 reject(err)
             }
@@ -26,17 +15,8 @@ module.exports = class AlunoService {
     static editar(aluno) {
         return new Promise(async function (resolve, reject) {
             try {
-                await AlunoSchema
-                    .findOneAndUpdate({_id: aluno.id}, {
-                        nome: aluno.nome,
-                        dataNascimento: aluno.dataNascimento,
-                        ra: aluno.ra,
-                        email: aluno.email,
-                        endereco: aluno.endereco,
-                        curso: aluno.curso
-                    })
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = await AlunoModel.findByIdAndUpdate(aluno.id, aluno)
+                resolve(result)
             } catch (err) {
                 reject(err)
             }
@@ -46,10 +26,8 @@ module.exports = class AlunoService {
     static deletar(id) {
         return new Promise(async function (resolve, reject) {
             try {
-                await AlunoSchema
-                    .findOneAndDelete({_id: id})
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = await AlunoModel.findByIdAndDelete(id)
+                resolve(result)
             } catch (err) {
                 reject(err)
             }
@@ -59,10 +37,8 @@ module.exports = class AlunoService {
     static listar() {
         return new Promise(async function (resolve, reject) {
             try {
-                await AlunoSchema
-                    .find()
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = await AlunoModel.find()
+                resolve(result)
             } catch (err) {
                 reject(err)
             }
@@ -72,10 +48,8 @@ module.exports = class AlunoService {
     static buscarPorNome(nome) {
         return new Promise(async function (resolve, reject) {
             try {
-                await AlunoSchema
-                    .find({nome: nome})
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = await AlunoModel.find({nome: {$regex: nome, $options: 'i'}})
+                resolve(result)
             } catch (err) {
                 reject(err)
             }
@@ -85,10 +59,30 @@ module.exports = class AlunoService {
     static buscarPorCurso(curso) {
         return new Promise(async function (resolve, reject) {
             try {
-                await AlunoSchema
-                    .find({curso: curso})
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
+                const result = await AlunoModel.find({curso: {$regex: curso, $options: 'i'}})
+                resolve(result)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    static buscarPorCidade(cidade) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                const result = await AlunoModel.find({cidade: cidade})
+                resolve(result)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    static buscarPorEmail(email) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                const result = await AlunoModel.find({email: email})
+                resolve(result)
             } catch (err) {
                 reject(err)
             }

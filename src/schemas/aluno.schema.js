@@ -13,6 +13,9 @@ const alunoSchema = new mongoose.Schema({
     email: {
         type: String
     },
+    cidade: {
+        type: String
+    },
     endereco: {
         type: String
     },

@@ -11,5 +11,7 @@ router.delete('/aluno', AlunoController.deletar)
 router.get('/alunos', AlunoController.listar)
 router.get('/alunos/nome/:nome', AlunoController.buscarPorNome)
 router.get('/alunos/curso/:curso', AlunoController.buscarPorCurso)
+router.get('/alunos/cidade/:cidade', AlunoController.buscarPorCidade)
+router.get('/alunos/email/:email', AlunoController.buscarPorEmail)
 
 module.exports = router
